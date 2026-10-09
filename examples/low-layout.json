@@ -1,0 +1,13 @@
+{
+  "studio_profile": {"tier": "low", "backend": "native"},
+  "aspect": "16:9",
+  "defaults": {"font": "Microsoft YaHei", "latin_font": "Arial", "color": "#183744"},
+  "slides": [{
+    "background_color": "#F5F7FA",
+    "elements": [
+      {"type": "text", "role": "title", "id": "title", "x": 0.7, "y": 0.65, "w": 11.9, "h": 0.85, "text": "Simple editable slide", "size": 34, "bold": true},
+      {"type": "connector", "id": "divider", "x1": 0.7, "y1": 1.65, "x2": 12.4, "y2": 1.65, "line": {"color": "#A4B4C1", "width_pt": 0.8}},
+      {"type": "text", "id": "body", "x": 0.7, "y": 2.05, "w": 11.5, "h": 2.1, "text": "Use original content here.\nThis low-tier example requires no generated material panel.", "size": 21}
+    ]
+  }]
+}

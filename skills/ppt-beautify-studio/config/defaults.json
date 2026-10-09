@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "backend": "native",
+  "tier": null,
+  "relay_config_path": null,
+  "ifapi_model": "gpt-image-2.5-sunburst",
+  "ifapi_guard": {
+    "enabled": true,
+    "reported_rejected_bytes": 63000000,
+    "budget_bytes": 60000000,
+    "basis": "User reports a 63 MB request was rejected. 60,000,000 bytes is a conservative local budget, NOT a verified server limit.",
+    "fix_evidence": null
+  }
+}

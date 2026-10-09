@@ -1,0 +1,31 @@
+# 模式1：美化现有PPT
+
+先读入口中的 [通道](image-backends.md)、[四档](beautify-tiers.md)、[预检](payload-budget.md)；只有缺失本次档位时询问。
+原文/页数/页序/强调默认保持；新文案、删除隐藏页、改事实均需明确授权。
+
+## 提取和整套规划
+
+按 [归档](asset-workspace.md) 建原路径工作区；用 extract_pptx.py 提取原图/段落/表图/几何，自动复用ppt-master
+守卫与intake/identity，不改依赖。null样式是继承，不是默认黑字18pt；结合OOXML/主题和源渲染核对。
+复杂组/母版/SmartArt/图中烘焙文字不可因抽取不全就删。证据JSON不是compose布局。
+盘点全部页，按 [设计合同](deck-style-contract.md) 确认主题、字体、有限版式家族、档位/预算和逐页密度。
+
+## 背景、图片与组件
+
+按 [背景选择](background-design.md) 问是否逐页定制及底色；高档的背景数量也由用户需求决定。
+[图文融合](image-blending.md) 区分抠图、延展、渐隐，避免矩形硬边；[字体](font-direction.md) 为标题/正文分别配置。
+[语义组件](semantic-components.md) 根据原文关系规划图标、引导线/时间轴；材质对话框必须真实生图，无素材不能原生平板顶替。
+所有图像使用持久选定通道；仅IFAPI调用有临时完整body预检，不能把原生默认偷偷换成IFAPI。
+
+## 真实样张门
+
+在所选档位内提出2–3个方向，封面＋复杂内容页实际compose并Office渲染，visualize展示真实文字/图片效果。
+不为了低/中档样张强制生图，现有素材和原生底同样可用。**展示后停下等明确选择**，不代用户批准。
+通过 [视觉闭环](visual-review-loop.md) 后，再按批准范围制作其余页；不设固定每批2张/固定小图上限。
+
+## 回填、验证和交付
+
+以 [布局协议](layout-typography.md) 和 [组件JSON](component-schema.md) 回填，顶层studio_profile写tier/backend。
+正文溢出先换版式/减装饰，不删字。每张图像真alpha/身份/内容对比，只有授权一体化模式允许主体并入背景。
+用check_layout.py核对错误、原文与源PPT每页数据，原文包含的母版/SmartArt等另核；自动检查不等于视觉完成。
+实际逐页渲染看图、修复，保存最终PPTX/预览，原件不覆盖。工作区保存backend/tier与累计生成次数供续作。

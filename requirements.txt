@@ -1,0 +1,7 @@
+python-pptx>=1.0.2,<2
+Pillow>=10,<13
+numpy>=1.26,<3
+pdfplumber>=0.11,<1
+pypdf>=6,<7
+pypdfium2>=4,<6
+PyYAML>=6,<7

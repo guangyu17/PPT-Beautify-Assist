@@ -1,0 +1,12 @@
+{
+  "studio_profile": {"tier": "high", "backend": "native"},
+  "aspect": "16:9",
+  "slides": [{
+    "background_color": "#F5F7F8",
+    "elements": [{
+      "type": "panel", "id": "generated-panel", "x": 1, "y": 2, "w": 9, "h": 2.5,
+      "material_source": "generated", "texture": "../work/ornaments/generated/panel.png",
+      "padding": 0.3, "text": "Replace with the original wording", "size": 24
+    }]
+  }]
+}

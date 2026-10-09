@@ -1,0 +1,45 @@
+# Secrets and provider configuration
+.secrets/
+**/.secrets/
+.env
+.env.*
+!.env.example
+auth.json
+api_key.json
+preferences.json
+*.pem
+*.key
+
+# Full request bodies may contain private chat history
+*request-body*
+*final-body*
+*.body.bin
+*.body.json
+
+# Local runtimes/caches
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.DS_Store
+Thumbs.db
+
+# User projects, media, fonts, renders and release outputs
+*_beautify/
+work/
+output/
+generated/
+logs/
+releases/
+dist/
+*.zip
+*.pptx
+*.pdf
+*.png
+*.jpg
+*.jpeg
+*.webp
+*.ttf
+*.otf
+*.ttc
