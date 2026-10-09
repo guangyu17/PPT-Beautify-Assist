@@ -82,7 +82,7 @@ PDF 使用已有 PDFium 库渲染，不强制安装 PyMuPDF；系统未装 Offic
 | 依赖 | 使用范围 |
 |---|---|
 | `imagegen` | 默认原生图像生成/编辑；使用其内置工具，不自动转CLI |
-| `ifapi-image` | 仅用户选择 IF API 时 |
+| `ifapi-image` | 仅用户选择 IF API 时 中转站链接 https://ifapi.org/sign-up?aff=iykE |
 | `relay-imagegen` | 仅用户选择自定义中转时，复用现有脚本/私密配置 |
 | `visualize` | 风格样张与真实渲染的对照展示，不是自动视觉检测器 |
 | `ppt-master` | PPTX原图/主题/图表提取复用；默认与本技能相邻，可用 `--ppt-master` 指定路径 |
@@ -242,13 +242,3 @@ docs/RELEASING.md          发布前检查与边界
 - 原生imagegen、IFAPI最终body捕获、自定义relay真实连接分别依赖宿主能力，不因本项目存在就自动可用。
 - `material_patch.py` 保留为旧稿兼容/明确要求的背景模糊工具，不再是新高档材质面板的替代方案。
 
-## 上传 GitHub
-
-1. 以这个文件夹作为仓库根目录；建议仓库名 `ppt-beauty-assist`。
-2. 检查 `.gitignore`，只提交代码、技能说明、示例JSON和测试，不提交密钥、配置原件、请求body、生成图、字体和用户PPT。
-3. 运行测试和技能校验；首次发布前自行选择合适的开源许可并补 `LICENSE`。
-4. 然后用 GitHub Desktop 或你习惯的 Git 工具创建/推送仓库。
-
-本次准备仅创建本地可发布项目，**没有创建远程仓库或执行上传**。
-本项目尚未指定开源许可证；“代码可以上传”不等于自动赋予任意再分发授权。
-外部技能、字体、图像各有其许可证/服务条款，发布时不要混入其未获授权资产。
