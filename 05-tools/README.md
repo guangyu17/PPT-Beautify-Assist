@@ -3,7 +3,7 @@
 从仓库根运行：
 
 ```bash
-python tools/check_repository.py
+python 05-tools/check_repository.py
 ```
 
 检查版本一致性、维护目录 README、本地 Markdown 链接、Python 语法、JSON/YAML 与围栏 JSON 示例。

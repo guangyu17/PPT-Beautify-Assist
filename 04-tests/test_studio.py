@@ -7,7 +7,7 @@ import tempfile
 import unittest
 
 ROOT=Path(__file__).resolve().parents[1]
-SCRIPTS=ROOT/'skills/ppt-beautify-studio/scripts'
+SCRIPTS=ROOT/'01-skills/ppt-beautify-studio/scripts'
 sys.path.insert(0,str(SCRIPTS))
 from studio_settings import load, update
 from request_preflight import inspect_request

@@ -6,18 +6,18 @@
 
 - 查看 `git status --short --branch`，保留现有修改；`git fetch origin` 后审查远程差异。
 - 工作树干净且可快进时，使用 `git merge --ff-only origin/main`；有分歧时先处理，不强制覆盖。
-- 比较收到的版本与 `skills/ppt-beautify-studio/`，记录新增、修改和删除，不盲目整包替换。
+- 比较收到的版本与 `01-skills/ppt-beautify-studio/`，记录新增、修改和删除，不盲目整包替换。
 - 更新 VERSION、SKILL.md 的 metadata.version、README、CHANGELOG 和对应审查记录。
 - 保留现有 MIT LICENSE；不修改外部技能或全局安装，不覆盖真实个人偏好。
 
 ## 2. 验证
 
 ```bash
-python tools/check_repository.py
-python -m unittest discover -s tests -v
+python 05-tools/check_repository.py
+python -m unittest discover -s 04-tests -v
 ```
 
-有 skill-creator 时，再用它的 `scripts/quick_validate.py` 校验 `skills/ppt-beautify-studio`。
+有 skill-creator 时，再用它的 `scripts/quick_validate.py` 校验 `01-skills/ppt-beautify-studio`。
 Windows 可使用 `python -X utf8`，避免中文路径或默认编码影响校验。
 上述检查不调用在线服务。若组合/渲染逻辑改变，应再制作真实 Office 渲染样例并看图。
 未调用的生图服务、未执行的视觉或行为测试，在报告中明确标记未测。
@@ -40,14 +40,15 @@ git status --short
 
 ```bash
 git archive --format=zip --prefix=PPT-Beautify-Assist/ --output=/absolute/release/PPT-Beautify-Assist-v1.8.0.zip HEAD
-git archive --format=zip --prefix=ppt-beautify-studio/ --output=/absolute/release/ppt-beautify-studio-v1.8.0.zip HEAD:skills/ppt-beautify-studio
+git archive --format=zip --prefix=ppt-beautify-studio/ --output=/absolute/release/ppt-beautify-studio-v1.8.0.zip HEAD:01-skills/ppt-beautify-studio
 ```
 
 路径和版本按实际修改。运行前确认输出文件不存在，避免覆盖旧包。
 技能 ZIP 还应在 `ppt-beautify-studio/LICENSE` 加入该提交的根 LICENSE，保留版权及许可声明。
 只打包技能文件；源码包包含文档、测试与维护工具，但不包含 `.git`。
 验证两个 ZIP 的 CRC、成员内容与提交一致，生成 SHA256SUMS.txt；从临时解包目录执行离线测试。
-本地编号工作区的包放入 `04-发布包/`，检查结果放入当前版本验证目录。
+本项目的临时发行包和检查输出可放入 `dist/`（已被 Git 忽略），或用户指定的位置。
+长期维护的审查结论放入 `02-docs/`。维护流程不依赖项目外的编号目录。
 
 ## 5. 同步
 

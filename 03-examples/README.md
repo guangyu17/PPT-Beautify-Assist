@@ -3,7 +3,7 @@
 `low-layout.json` is directly composable and does not require generated assets:
 
 ```text
-python skills/ppt-beautify-studio/scripts/compose_slide.py examples/low-layout.json -o work/low-example.pptx
+python 01-skills/ppt-beautify-studio/scripts/compose_slide.py 03-examples/low-layout.json -o work/low-example.pptx
 ```
 
 `generated-panel-layout.json` is a schema example, not an included generated asset.

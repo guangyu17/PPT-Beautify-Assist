@@ -2,6 +2,18 @@
 
 **当前版本：1.8.0** · Codex 技能：`ppt-beautify-studio` · 显示名：**PPT 美化修改专家**
 
+项目内部按下面的顺序维护；项目根目录就是本 README 所在目录。
+
+| 目录 | 用途与入口 |
+|---|---|
+| [01-skills](01-skills/README.md) | 可安装技能的正式源码 |
+| [02-docs](02-docs/README.md) | 维护、审查与发布文档 |
+| [03-examples](03-examples/README.md) | 可复用的布局示例 |
+| [04-tests](04-tests/README.md) | 离线回归测试 |
+| [05-tools](05-tools/README.md) | 仓库检查工具 |
+
+维护规则见 [AGENTS.md](AGENTS.md)，目录职责与归档约定见 [项目结构](02-docs/PROJECT-STRUCTURE.md)。
+
 将现有 PPT、PDF 页面、截图或大纲，变成风格统一、文字可编辑、图片可分层的演示文稿。
 先确定整套页数、视觉风格和版式家族，再做真实样张；用户确认后才生成整套。
 
@@ -11,12 +23,12 @@
 
 ## 1.8.0 的变化
 
-- 新增 [故事线规划](skills/ppt-beautify-studio/references/storyline-pyramid.md)：商业汇报先规划结论标题、分论点和事实支撑，再确认页数与风格。
+- 新增 [故事线规划](01-skills/ppt-beautify-studio/references/storyline-pyramid.md)：商业汇报先规划结论标题、分论点和事实支撑，再确认页数与风格。
 - 缺少事实时明确标注待补，不编造数字或定性结论。学术、叙事等场景仅在用户要求时使用这套商业框架。
 - 现有 PPT 的逻辑诊断为可选项；仅换背景/配色、不动文字时不主动诊断。PDF/截图忠实还原不套用故事线重构。
 - 新增代理维护规则、各目录 README、更新记录及仓库检查工具；Python 技能工具和配置格式未改变。
 
-详细变化见 [CHANGELOG](CHANGELOG.md)，来源差异和审查修订见 [1.8.0 审查记录](docs/V1.8.0-REVIEW.md)。
+详细变化见 [CHANGELOG](CHANGELOG.md)，来源差异和审查修订见 [1.8.0 审查记录](02-docs/V1.8.0-REVIEW.md)。
 
 ## 1.7.0 已有能力
 
@@ -62,7 +74,7 @@
 
 ### 技能安装
 
-将本项目 `skills/ppt-beautify-studio` 文件夹复制到：
+将本项目 `01-skills/ppt-beautify-studio` 文件夹复制到：
 
 ```text
 $CODEX_HOME/skills/ppt-beautify-studio
@@ -79,8 +91,8 @@ Python **3.10+**（本次测试使用3.12），推荐在虚拟环境中安装：
 python -m venv .venv
 # 按本机系统激活 .venv 后：
 python -m pip install -r requirements.txt
-python tools/check_repository.py
-python -m unittest discover -s tests -v
+python 05-tools/check_repository.py
+python -m unittest discover -s 04-tests -v
 ```
 
 在 Codex 桌面中，也可让代理通过 `load_workspace_dependencies` 使用自带的 Python/库。
@@ -101,7 +113,7 @@ PDF 使用已有 PDFium 库渲染，不强制安装 PyMuPDF；系统未装 Offic
 
 ## 生图通道：选择一次，后续复用
 
-默认配置文件 `skills/ppt-beautify-studio/config/defaults.json`：
+默认配置文件 `01-skills/ppt-beautify-studio/config/defaults.json`：
 - backend：`native`
 - tier：空（新项目未指定档位时问一次）
 - IF API临时请求体保护：开启，仅当使用对应链路时适用
@@ -124,11 +136,11 @@ $CODEX_HOME/ppt-beautify-studio/preferences.json
 也可在明确授权后由代理使用辅助工具（以下命令从仓库根运行）：
 
 ```bash
-python skills/ppt-beautify-studio/scripts/studio_settings.py show
-python skills/ppt-beautify-studio/scripts/studio_settings.py set --backend native --confirmed
-python skills/ppt-beautify-studio/scripts/studio_settings.py set --backend ifapi --confirmed
-python skills/ppt-beautify-studio/scripts/studio_settings.py set --backend relay --relay-config /absolute/private/config.json --confirmed
-python skills/ppt-beautify-studio/scripts/studio_settings.py set --tier high --confirmed
+python 01-skills/ppt-beautify-studio/scripts/studio_settings.py show
+python 01-skills/ppt-beautify-studio/scripts/studio_settings.py set --backend native --confirmed
+python 01-skills/ppt-beautify-studio/scripts/studio_settings.py set --backend ifapi --confirmed
+python 01-skills/ppt-beautify-studio/scripts/studio_settings.py set --backend relay --relay-config /absolute/private/config.json --confirmed
+python 01-skills/ppt-beautify-studio/scripts/studio_settings.py set --tier high --confirmed
 ```
 
 `--confirmed` 只是代理记录用户明确指令，不是软件自动获得了授权。
@@ -151,7 +163,7 @@ python skills/ppt-beautify-studio/scripts/studio_settings.py set --tier high --c
 或由用户明确选择原生/其他中转；本技能不会创建一个未经授权的旁路客户端。
 
 ```bash
-python skills/ppt-beautify-studio/scripts/request_preflight.py \
+python 01-skills/ppt-beautify-studio/scripts/request_preflight.py \
   --backend ifapi --body /private/final-body.bin --complete-body \
   -o /project/logs/preflight-r01.json
 ```
@@ -174,7 +186,7 @@ python skills/ppt-beautify-studio/scripts/request_preflight.py \
 不会因版本叫 **1.7.1** 就自动关闭。用户确认桌面修复后，可记录简短依据：
 
 ```bash
-python skills/ppt-beautify-studio/scripts/studio_settings.py set \
+python 01-skills/ppt-beautify-studio/scripts/studio_settings.py set \
   --ifapi-guard off --fix-evidence "用户确认某版本已修复，含日期/测试摘要" --confirmed
 ```
 
@@ -230,16 +242,16 @@ CHANGELOG.md              更新记录
 requirements.txt
 .gitignore
 VERSION
-skills/ppt-beautify-studio/
+01-skills/ppt-beautify-studio/
   SKILL.md
   agents/openai.yaml
   config/defaults.json
   references/             按模式与能力逐步加载
   scripts/                本地提取、组合、渲染、设置、预检等工具
-tests/test_studio.py       离线回归，不触发服务调用或修改真实偏好
-examples/                 不含密钥/真实素材的协议样例
-docs/                     发布说明与版本审查
-tools/check_repository.py  文档、版本、语法与目录检查
+04-tests/test_studio.py       离线回归，不触发服务调用或修改真实偏好
+03-examples/                 不含密钥/真实素材的协议样例
+02-docs/                     发布说明与版本审查
+05-tools/check_repository.py  文档、版本、语法与目录检查
 ```
 
 核心脚本还包括 `extract_pptx.py`、`extract_pdf.py`、`compose_slide.py`、`check_layout.py`、`render_preview.py`、
@@ -258,9 +270,9 @@ tools/check_repository.py  文档、版本、语法与目录检查
 
 ## 维护与许可
 
-目录导航：[技能](skills/README.md) · [示例](examples/README.md) · [测试](tests/README.md) · [文档](docs/README.md) · [维护工具](tools/README.md)。
-每个维护目录提供 README；标准技能和工具路径保持稳定，不为了数字排序改名。
-代理维护规则见 [AGENTS.md](AGENTS.md)，发布和同步步骤见 [RELEASING](docs/RELEASING.md)。
+目录导航：[技能](01-skills/README.md) · [示例](03-examples/README.md) · [测试](04-tests/README.md) · [文档](02-docs/README.md) · [维护工具](05-tools/README.md)。
+项目顶层目录按数字排序，每个维护目录提供 README；技能包内部标准目录保持原名。
+代理维护规则见 [AGENTS.md](AGENTS.md)，发布和同步步骤见 [RELEASING](02-docs/RELEASING.md)。
 
 仓库：[guangyu17/PPT-Beautify-Assist](https://github.com/guangyu17/PPT-Beautify-Assist)。
 本仓库采用 [MIT License](LICENSE)。外部技能、字体、图像及其服务条款各自独立，不随本仓库许可自动授权。

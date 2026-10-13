@@ -9,7 +9,7 @@ from urllib.parse import unquote, urlsplit
 import yaml
 
 ROOT = Path(__file__).resolve().parents[1]
-SOURCE_DIRS = ("docs", "examples", "skills", "tests", "tools")
+SOURCE_DIRS = ("01-skills", "02-docs", "03-examples", "04-tests", "05-tools")
 SKIP_DIRS = {"__pycache__", ".pytest_cache", ".venv", "venv"}
 
 
@@ -38,7 +38,7 @@ def main():
     version = (ROOT / "VERSION").read_text(encoding="utf-8-sig").strip()
     if not re.fullmatch(r"\d+\.\d+\.\d+", version):
         errors.append("VERSION must use major.minor.patch")
-    skill_text = (ROOT / "skills/ppt-beautify-studio/SKILL.md").read_text(encoding="utf-8-sig")
+    skill_text = (ROOT / "01-skills/ppt-beautify-studio/SKILL.md").read_text(encoding="utf-8-sig")
     try:
         frontmatter = yaml.safe_load(skill_text.split("---", 2)[1])
         if frontmatter["metadata"]["version"] != version:
