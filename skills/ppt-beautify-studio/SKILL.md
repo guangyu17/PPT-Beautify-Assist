@@ -1,11 +1,11 @@
 ---
 name: ppt-beautify-studio
 description: >
-  美化 PPT、重新设计幻灯片、把图片/PDF 转为可编辑 PPT、按大纲做 PPT、
+  美化 PPT、重新设计幻灯片、把图片/PDF 转为可编辑 PPT、按大纲做 PPT（商业汇报支持结论先行的故事线规划）、
   换背景及图文融合。支持四档美化、原生/IF API/自定义中转生图、先定整套风格再生成。
-  不用于仅修改几个字或讲解 PPT 软件操作。
+  不用于仅修改几个字、讲解 PPT 软件操作或与 PPT 无关的文章写作。
 metadata:
-  version: "1.7.0"
+  version: "1.8.0"
   short-description: 四档 PPT 美化、多生图通道与真实请求体预检
 ---
 
@@ -41,6 +41,9 @@ IF API 读 `$ifapi-image`，模型保留 `gpt-image-2.5-sunburst`；relay读 `$r
 | 可编辑PPT美化：原文/页数/顺序默认不变 | [模式1](references/mode-beautify.md) |
 | PDF页面、截图、扁平PPT忠实还原 | [模式2](references/mode-image-to-pptx.md) |
 | 大纲/Word/Markdown新建演示 | [模式3](references/mode-outline.md) |
+
+商业汇报的模式3在确认页数结构前按 [故事线](references/storyline-pyramid.md) 规划结论标题与事实缺口；学术、叙事等场景仅在用户要求时应用这套框架，否则按用户材料和目标规划。
+模式1仅在用户要求或明显缺结论标题时提一次可选诊断建议，同意前不改字；只换背景/配色且不动文字时不主动建议。模式2不用。
 
 先判断扁平页与真实意图，不仅按扩展名。模式1/3必须按 [全套设计合同](references/deck-style-contract.md)
 盘点全部页数与内容，确认网格/字体/配色/排版家族、档位及允许出图量，之后才做代表页。

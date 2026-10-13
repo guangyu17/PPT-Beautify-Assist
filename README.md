@@ -1,6 +1,6 @@
-# PPT Beauty Assist
+# PPT Beautify Assist
 
-**当前版本：1.7.0** · Codex 技能：`ppt-beautify-studio` · 显示名：**PPT 美化修改专家**
+**当前版本：1.8.0** · Codex 技能：`ppt-beautify-studio` · 显示名：**PPT 美化修改专家**
 
 将现有 PPT、PDF 页面、截图或大纲，变成风格统一、文字可编辑、图片可分层的演示文稿。
 先确定整套页数、视觉风格和版式家族，再做真实样张；用户确认后才生成整套。
@@ -9,7 +9,16 @@
 > 默认使用 **GPT 原生 imagegen**；可持久切换至 **IF API** 或 **relay-imagegen 自定义中转**。
 > 安装技能不意味着当前聊天一定拥有原生图像工具；工具缺失时会明确说明，不静默改用付费中转。
 
-## 1.7.0 的变化
+## 1.8.0 的变化
+
+- 新增 [故事线规划](skills/ppt-beautify-studio/references/storyline-pyramid.md)：商业汇报先规划结论标题、分论点和事实支撑，再确认页数与风格。
+- 缺少事实时明确标注待补，不编造数字或定性结论。学术、叙事等场景仅在用户要求时使用这套商业框架。
+- 现有 PPT 的逻辑诊断为可选项；仅换背景/配色、不动文字时不主动诊断。PDF/截图忠实还原不套用故事线重构。
+- 新增代理维护规则、各目录 README、更新记录及仓库检查工具；Python 技能工具和配置格式未改变。
+
+详细变化见 [CHANGELOG](CHANGELOG.md)，来源差异和审查修订见 [1.8.0 审查记录](docs/V1.8.0-REVIEW.md)。
+
+## 1.7.0 已有能力
 
 - 新增 **超高／高／中／低四档**；不是三个档位。档位控制设计投入与素材复杂度，不破坏原文保真和可编辑性。
 - 默认原生生图。用户单独说“以后使用某通道”即可保存偏好，不在每次对话重新询问服务商。
@@ -36,7 +45,7 @@
 
 1. **美化现有 PPTX**：默认文字、页数、顺序不变，重新设计背景/版式。
 2. **图片/PDF/扁平 PPT 还原**：以原貌为准，不擅自美化或重写。
-3. **大纲生成**：先确认完整页数与结构，再做风格样张。
+3. **大纲生成**：商业汇报先规划故事线与事实缺口，再确认完整页数与结构、制作风格样张。其他场景按用户材料与目标组织。
 
 示例请求：
 
@@ -70,6 +79,7 @@ Python **3.10+**（本次测试使用3.12），推荐在虚拟环境中安装：
 python -m venv .venv
 # 按本机系统激活 .venv 后：
 python -m pip install -r requirements.txt
+python tools/check_repository.py
 python -m unittest discover -s tests -v
 ```
 
@@ -82,7 +92,7 @@ PDF 使用已有 PDFium 库渲染，不强制安装 PyMuPDF；系统未装 Offic
 | 依赖 | 使用范围 |
 |---|---|
 | `imagegen` | 默认原生图像生成/编辑；使用其内置工具，不自动转CLI |
-| `ifapi-image` | 仅用户选择 IF API 时 中转站链接 https://ifapi.org/sign-up?aff=iykE |
+| `ifapi-image` | 仅用户选择 IF API 时；[中转站链接](https://ifapi.org/sign-up?aff=iykE) |
 | `relay-imagegen` | 仅用户选择自定义中转时，复用现有脚本/私密配置 |
 | `visualize` | 风格样张与真实渲染的对照展示，不是自动视觉检测器 |
 | `ppt-master` | PPTX原图/主题/图表提取复用；默认与本技能相邻，可用 `--ppt-master` 指定路径 |
@@ -215,6 +225,8 @@ logs/                     生成、预检、检查与续作记录
 
 ```text
 README.md
+AGENTS.md                 代理维护规则
+CHANGELOG.md              更新记录
 requirements.txt
 .gitignore
 VERSION
@@ -226,7 +238,8 @@ skills/ppt-beautify-studio/
   scripts/                本地提取、组合、渲染、设置、预检等工具
 tests/test_studio.py       离线回归，不触发服务调用或修改真实偏好
 examples/                 不含密钥/真实素材的协议样例
-docs/RELEASING.md          发布前检查与边界
+docs/                     发布说明与版本审查
+tools/check_repository.py  文档、版本、语法与目录检查
 ```
 
 核心脚本还包括 `extract_pptx.py`、`extract_pdf.py`、`compose_slide.py`、`check_layout.py`、`render_preview.py`、
@@ -242,3 +255,12 @@ docs/RELEASING.md          发布前检查与边界
 - 原生imagegen、IFAPI最终body捕获、自定义relay真实连接分别依赖宿主能力，不因本项目存在就自动可用。
 - `material_patch.py` 保留为旧稿兼容/明确要求的背景模糊工具，不再是新高档材质面板的替代方案。
 
+
+## 维护与许可
+
+目录导航：[技能](skills/README.md) · [示例](examples/README.md) · [测试](tests/README.md) · [文档](docs/README.md) · [维护工具](tools/README.md)。
+每个维护目录提供 README；标准技能和工具路径保持稳定，不为了数字排序改名。
+代理维护规则见 [AGENTS.md](AGENTS.md)，发布和同步步骤见 [RELEASING](docs/RELEASING.md)。
+
+仓库：[guangyu17/PPT-Beautify-Assist](https://github.com/guangyu17/PPT-Beautify-Assist)。
+本仓库采用 [MIT License](LICENSE)。外部技能、字体、图像及其服务条款各自独立，不随本仓库许可自动授权。

@@ -1,0 +1,23 @@
+# 按需参考索引
+
+按 SKILL.md 的触发条件阅读对应文件，不需要一次加载全部参考。
+
+- [统一工作区与素材归档](asset-workspace.md)
+- [背景定制、底色与花纹边框](background-design.md)
+- [无字背景、装饰和材质提示词](background-prompts.md)
+- [四档美化：超高 / 高 / 中 / 低](beautify-tiers.md)
+- [原生组件 JSON 协议](component-schema.md)
+- [全套风格与版式逻辑先行](deck-style-contract.md)
+- [示例反推：旅行手札融入史诗场景](epic-integrated-background.md)
+- [字体方向、下载与安装](font-direction.md)
+- [生图通道与持久选择（v1.7）](image-backends.md)
+- [图片融合：人物抠图、场景延展与 PNG 渐变透明](image-blending.md)
+- [可重放的多层透明度与角度渐变](layer-recipes.md)
+- [版式、字号、配色与对比度](layout-typography.md)
+- [模式1：美化现有PPT](mode-beautify.md)
+- [模式2：页面还原为可编辑PPT](mode-image-to-pptx.md)
+- [模式3：大纲生成](mode-outline.md)
+- [临时IF API请求体预检（v1.7替代旧固定限制）](payload-budget.md)
+- [材质文本区、线框、引导线与主题图标](semantic-components.md)
+- [故事线规划与诊断（金字塔）](storyline-pyramid.md)
+- [真实渲染、visualize 复核与自主修复闭环](visual-review-loop.md)
