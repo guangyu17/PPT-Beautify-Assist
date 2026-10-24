@@ -8,6 +8,7 @@
 - [四档美化：超高 / 高 / 中 / 低](beautify-tiers.md)
 - [原生组件 JSON 协议](component-schema.md)
 - [全套风格与版式逻辑先行](deck-style-contract.md)
+- [有辨识度的PPT：设计brief、实质不同方向、真实评审与减法](distinctive-design.md)
 - [示例反推：旅行手札融入史诗场景](epic-integrated-background.md)
 - [字体方向、下载与安装](font-direction.md)
 - [生图通道与持久选择（v1.7）](image-backends.md)

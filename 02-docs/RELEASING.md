@@ -39,11 +39,12 @@ git status --short
 从已经检查并提交的 Git 快照构建，不递归压缩整个本机目录：
 
 ```bash
-git archive --format=zip --prefix=PPT-Beautify-Assist/ --output=/absolute/release/PPT-Beautify-Assist-v1.8.0.zip HEAD
-git archive --format=zip --prefix=ppt-beautify-studio/ --output=/absolute/release/ppt-beautify-studio-v1.8.0.zip HEAD:01-skills/ppt-beautify-studio
+git -c core.autocrlf=false archive --format=zip --prefix=PPT-Beautify-Assist/ --output=/absolute/release/PPT-Beautify-Assist-v1.9.0.zip HEAD
+git -c core.autocrlf=false archive --format=zip --prefix=ppt-beautify-studio/ --output=/absolute/release/ppt-beautify-studio-v1.9.0.zip HEAD:01-skills/ppt-beautify-studio
 ```
 
 路径和版本按实际修改。运行前确认输出文件不存在，避免覆盖旧包。
+这里仅为归档进程关闭自动换行转换，不修改本机Git配置；否则Windows的core.autocrlf可能让ZIP内文本与提交中的blob字节不同。
 技能 ZIP 还应在 `ppt-beautify-studio/LICENSE` 加入该提交的根 LICENSE，保留版权及许可声明。
 只打包技能文件；源码包包含文档、测试与维护工具，但不包含 `.git`。
 验证两个 ZIP 的 CRC、成员内容与提交一致，生成 SHA256SUMS.txt；从临时解包目录执行离线测试。

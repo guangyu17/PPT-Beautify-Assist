@@ -1,6 +1,6 @@
 # PPT Beautify Assist
 
-**当前版本：1.8.0** · Codex 技能：`ppt-beautify-studio` · 显示名：**PPT 美化修改专家**
+**当前版本：1.9.0** · Codex 技能：`ppt-beautify-studio` · 显示名：**PPT 美化修改专家**
 
 项目内部按下面的顺序维护；项目根目录就是本 README 所在目录。
 
@@ -21,7 +21,17 @@
 > 默认使用 **GPT 原生 imagegen**；可持久切换至 **IF API** 或 **relay-imagegen 自定义中转**。
 > 安装技能不意味着当前聊天一定拥有原生图像工具；工具缺失时会明确说明，不静默改用付费中转。
 
-## 1.8.0 的变化
+## 1.9.0 的变化
+
+- 新增 [有辨识度的 PPT 设计](01-skills/ppt-beautify-studio/references/distinctive-design.md)：把受众、观看场景、讲述目标和目标感受落实为设计 brief；方向之间比较构图、阅读路径、字体和图像角色，避免仅换配色。
+- 模式1视觉重设计和模式3使用新指导。已有明确方向只细化该方向；局部修复直接处理问题；PDF/截图忠实还原仍以原稿为准。
+- 真实 PPTX 渲染后每轮聚焦1–3个主要问题，先做最多两轮审美精修；与原有每页4轮本地修复共用预算，审美轮次结束不豁免丢字、遮挡和溢出等缺陷。
+- 减法针对无用途的装饰，保护原文、强调、数据、图例和来源。独立评审仅在允许委派时使用，否则明确自查；不以主观分数冒充视觉或功能验证。
+- 研读 [distinctive-ai-design](https://github.com/houxin0010/distinctive-ai-design/tree/92c68366767b98924fe2719c16659e7f1e93c7af) 后独立编写 PPT 场景指导；不复制其源码，不增加运行依赖，不改 Python 工具、个人偏好或默认生图通道。
+
+来源、融合范围及检查见 [1.9.0 审查记录](02-docs/V1.9.0-REVIEW.md)，详细变化见 [CHANGELOG](CHANGELOG.md)。
+
+## 1.8.0 已有能力
 
 - 新增 [故事线规划](01-skills/ppt-beautify-studio/references/storyline-pyramid.md)：商业汇报先规划结论标题、分论点和事实支撑，再确认页数与风格。
 - 缺少事实时明确标注待补，不编造数字或定性结论。学术、叙事等场景仅在用户要求时使用这套商业框架。
