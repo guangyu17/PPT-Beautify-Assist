@@ -1,6 +1,7 @@
 # 真实渲染、visualize 复核与自主修复闭环
 
 所有模式必读；先遵守 [载荷控制](payload-budget.md)，其临时IFAPI完整body门禁优先；原生默认无该门禁。目标是“当前实际渲染暂未发现明显问题”，不是宣称完美，也不是把修复留给用户。
+有动画、3D或视频时另按 [动态播放检查](motion-3d-ppt.md) 核验最终PPTX在目标宿主的放映；本页静态渲染通过不能代替时序、交互或媒体验证。
 复用 `compose_slide.py`、`render_preview.py`、`check_layout.py` 和 visualize，不再造 PPT 渲染器或
 假视觉打分器。visualize 是展示与对照界面，视觉判断由主代理实际查看渲染图完成。
 

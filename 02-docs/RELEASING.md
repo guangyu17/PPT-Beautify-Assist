@@ -18,6 +18,7 @@ python -m unittest discover -s 04-tests -v
 ```
 
 有 skill-creator 时，再用它的 `scripts/quick_validate.py` 校验 `01-skills/ppt-beautify-studio`。
+内置子技能也单独校验`01-skills/ppt-beautify-studio/subskills/ui-ux-design`；仓库检查会扫描所有嵌套SKILL.md。
 Windows 可使用 `python -X utf8`，避免中文路径或默认编码影响校验。
 上述检查不调用在线服务。若组合/渲染逻辑改变，应再制作真实 Office 渲染样例并看图。
 未调用的生图服务、未执行的视觉或行为测试，在报告中明确标记未测。
@@ -39,15 +40,17 @@ git status --short
 从已经检查并提交的 Git 快照构建，不递归压缩整个本机目录：
 
 ```bash
-git -c core.autocrlf=false archive --format=zip --prefix=PPT-Beautify-Assist/ --output=/absolute/release/PPT-Beautify-Assist-v1.9.0.zip HEAD
-git -c core.autocrlf=false archive --format=zip --prefix=ppt-beautify-studio/ --output=/absolute/release/ppt-beautify-studio-v1.9.0.zip HEAD:01-skills/ppt-beautify-studio
+git -c core.autocrlf=false archive --format=zip --prefix=PPT-Beautify-Assist/ --output=/absolute/release/PPT-Beautify-Assist-v1.10.0.zip HEAD
+git -c core.autocrlf=false archive --format=zip --prefix=ppt-beautify-studio/ --output=/absolute/release/ppt-beautify-studio-v1.10.0.zip HEAD:01-skills/ppt-beautify-studio
+git -c core.autocrlf=false archive --format=zip --prefix=ui-ux-design/ --output=/absolute/release/ui-ux-design-v1.0.0.zip HEAD:01-skills/ppt-beautify-studio/subskills/ui-ux-design
 ```
 
 路径和版本按实际修改。运行前确认输出文件不存在，避免覆盖旧包。
 这里仅为归档进程关闭自动换行转换，不修改本机Git配置；否则Windows的core.autocrlf可能让ZIP内文本与提交中的blob字节不同。
 技能 ZIP 还应在 `ppt-beautify-studio/LICENSE` 加入该提交的根 LICENSE，保留版权及许可声明。
+独立子技能ZIP同样加入`ui-ux-design/LICENSE`。PPT ZIP已包含内置子技能，不再从旧上游拉取或再安装一份ui-ux-design；文章和技术来源随包保留。
 只打包技能文件；源码包包含文档、测试与维护工具，但不包含 `.git`。
-验证两个 ZIP 的 CRC、成员内容与提交一致，生成 SHA256SUMS.txt；从临时解包目录执行离线测试。
+验证三个 ZIP 的 CRC、成员内容与提交一致，生成 SHA256SUMS.txt；从临时解包目录执行离线测试并校验两个技能入口。
 本项目的临时发行包和检查输出可放入 `dist/`（已被 Git 忽略），或用户指定的位置。
 长期维护的审查结论放入 `02-docs/`。维护流程不依赖项目外的编号目录。
 
@@ -56,6 +59,10 @@ git -c core.autocrlf=false archive --format=zip --prefix=ppt-beautify-studio/ --
 用户任务包含 GitHub 同步时，普通 `git push origin main`，再确认 HEAD 与远程 main 一致。
 若远程有新提交，先合并处理、重新验证受影响内容；不使用 force push。
 普通代码推送不创建 GitHub Release 或 tag；这些是独立发布动作。
+
+## 用户同时授权本地安装时
+
+先完整备份旧PPT安装和distinctive-ai-design到技能发现目录之外，保存文件清单/哈希。安装整个PPT包，核对父子技能文件和两个入口，个人偏好哈希前后比较。确认新子技能可直接读取后，再归档旧名称的SKILL.md/安装，避免重复发现；Windows拒绝目录移动时可复制核验备份后更新文件，不能丢失本地自定义。只验证磁盘安装不能声称当前宿主已重新扫描。
 
 ## 保留的产品边界
 

@@ -19,7 +19,8 @@ PPT-Beautify-Assist/
 │       ├── agents/         界面元数据及 README
 │       ├── config/         默认配置及 README
 │       ├── references/     按需参考及 README
-│       └── scripts/        技能辅助脚本及 README
+│       ├── scripts/        技能辅助脚本及 README
+│       └── subskills/ui-ux-design/  内置设计子技能，含SKILL.md、agents和references
 ├── 02-docs/                 项目管理、审查和发布文档
 ├── 03-examples/             布局 JSON 示例
 ├── 04-tests/                离线回归

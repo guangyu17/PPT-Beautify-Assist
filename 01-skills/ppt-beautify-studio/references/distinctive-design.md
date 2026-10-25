@@ -1,6 +1,7 @@
 # 有辨识度的 PPT 设计与减法精修
 
 模式1的视觉重设计、模式3的新建演示使用；只做局部修复时直接处理指定问题。模式2忠实还原时不套新风格、减装饰或重组原稿。先遵循原文、样张、档位、通道和费用边界。
+共享方法来自本包的 [ui-ux-design子技能](../subskills/ui-ux-design/SKILL.md)；本文保留PPT的字段映射和内容保护。需要动态时另读 [PPT动画与3D适配](motion-3d-ppt.md)，不默认给静态任务加效果。
 
 ## 把讲述意图写成 brief
 
@@ -49,4 +50,4 @@
 
 ## 来源
 
-设计方法研读自 [distinctive-ai-design 的固定版本](https://github.com/houxin0010/distinctive-ai-design/tree/92c68366767b98924fe2719c16659e7f1e93c7af)。以上为本项目独立编写的 PPT 场景指导，未复制其代码或正文；该技能不成为运行依赖。两轮精修和字段设计是本项目的适配，不能解释为客观美学标准。
+1.9的方法研读自 [distinctive-ai-design 的固定版本](https://github.com/houxin0010/distinctive-ai-design/tree/92c68366767b98924fe2719c16659e7f1e93c7af)；1.10直接复核原文章及官方技术资料，见内置子技能的 [来源](../subskills/ui-ux-design/references/sources.md)。PPT指导及子技能为本项目独立编写，未复制上游代码/正文；旧技能不成为外部依赖。字段和预算是执行适配，不能解释为客观美学标准。

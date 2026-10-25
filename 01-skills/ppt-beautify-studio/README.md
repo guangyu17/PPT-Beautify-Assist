@@ -9,5 +9,6 @@
 | [config](config/README.md) | 仓库默认设置 |
 | [references](references/README.md) | 各模式与设计能力的细节 |
 | [scripts](scripts/README.md) | 本地处理与验证辅助工具 |
+| [subskills](subskills/README.md) | 内置ui-ux-design设计与动态视觉子技能 |
 
 README 用于目录导航；实际执行规则以 SKILL.md 及相关参考为准。维护仓库不代表执行一次 PPT 美化流程。

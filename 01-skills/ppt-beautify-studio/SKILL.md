@@ -2,11 +2,11 @@
 name: ppt-beautify-studio
 description: >
   美化 PPT、重新设计幻灯片、把图片/PDF 转为可编辑 PPT、按大纲做 PPT（商业汇报支持结论先行的故事线规划）、
-  换背景及图文融合。支持有辨识度的视觉方向、设计brief、四档美化及多生图通道。
+  换背景及图文融合。支持设计brief、四档美化、多生图通道及动画/3D视觉方案与播放验证。
   不用于仅修改几个字、讲解 PPT 软件操作或与 PPT 无关的文章写作。
 metadata:
-  version: "1.9.0"
-  short-description: 有辨识度的 PPT 设计、四档美化与真实渲染精修
+  version: "1.10.0"
+  short-description: 内置UI/UX设计子技能，支持PPT动态视觉选型与可编辑交付
 ---
 
 # PPT 美化修改专家
@@ -52,6 +52,11 @@ IF API 读 `$ifapi-image`，模型保留 `gpt-image-2.5-sunburst`；relay读 `$r
 模式1视觉重设计/模式3按 [有辨识度的设计](references/distinctive-design.md) 将受众、讲述目标、
 观看场景、目标感受与具体避免项写入设计brief，并为每个方向记录构图/阅读路径、字体角色及图像用途。
 方向应有实质差异，不能只换颜色；已有明确方向就细化它。局部修复不重开探索，模式2仍忠实还原。
+
+设计方法使用本包内置 [ui-ux-design子技能](subskills/ui-ux-design/SKILL.md)：共享视觉探索、动画编排、shader/3D选型和真实效果评审；
+只加载本次需要的参考。它是distinctive-ai-design重命名后的自有后继，不要求额外安装旧技能，也不改变PPT的原文、页序、样张及费用规则。
+用户要求动画、旋转、流光或跨页连续时再读 [PPT动态视觉适配](references/motion-3d-ppt.md)，核对目标宿主与后处理工具，编排motion_plan并验证最终放映。
+现有compose是静态组合器；设计记录不等于动画已实现，网页shader/预渲染视频也不等于PPT原生可编辑3D。没有动态要求时保持静态流程。
 
 ## 预览与审批
 

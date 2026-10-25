@@ -1,6 +1,6 @@
 # PPT Beautify Assist
 
-**当前版本：1.9.0** · Codex 技能：`ppt-beautify-studio` · 显示名：**PPT 美化修改专家**
+**当前版本：1.10.0** · 主技能：`ppt-beautify-studio` · 内置子技能：`ui-ux-design` 1.0.0
 
 项目内部按下面的顺序维护；项目根目录就是本 README 所在目录。
 
@@ -21,7 +21,17 @@
 > 默认使用 **GPT 原生 imagegen**；可持久切换至 **IF API** 或 **relay-imagegen 自定义中转**。
 > 安装技能不意味着当前聊天一定拥有原生图像工具；工具缺失时会明确说明，不静默改用付费中转。
 
-## 1.9.0 的变化
+## 1.10.0 的变化
+
+- 直接研读 [Lenny's Newsletter设计文章](https://www.lennysnewsletter.com/p/how-to-turn-your-ai-into-a-world) 的公开技巧1–6，扩展“探索、定义、交付”为可执行的设计brief、代表状态、实际评审与减法；第7节付费正文未纳入。
+- `distinctive-ai-design` 更名后继为内置 [ui-ux-design](01-skills/ppt-beautify-studio/subskills/ui-ux-design/README.md) 1.0.0：独立编写设计、动画编排、图像与shader/3D结合、视频连续性、触摸/减少动态、性能与资源生命周期指导。
+- 新增 [PPT动画/3D适配](01-skills/ppt-beautify-studio/references/motion-3d-ppt.md)：区分PowerPoint原生动画、Morph、3D模型和预渲染无字媒体，记录motion_plan，并分别验证静态阅读版与目标宿主放映。
+- 保持原文、页序、原生文字、样张门和已有预算。现有组合脚本仍是静态组合器，不把设计计划或网页shader称作已实现的PPT动画。
+- PPT包内包含子技能，不需外部旧技能；另提供ui-ux-design单独ZIP供其他环境使用，本机不重复安装两份同名入口。
+
+来源、迁移及检查见 [1.10.0记录](02-docs/V1.10.0-REVIEW.md)；技术出处见 [子技能来源](01-skills/ppt-beautify-studio/subskills/ui-ux-design/references/sources.md)。
+
+## 1.9.0 已有能力
 
 - 新增 [有辨识度的 PPT 设计](01-skills/ppt-beautify-studio/references/distinctive-design.md)：把受众、观看场景、讲述目标和目标感受落实为设计 brief；方向之间比较构图、阅读路径、字体和图像角色，避免仅换配色。
 - 模式1视觉重设计和模式3使用新指导。已有明确方向只细化该方向；局部修复直接处理问题；PDF/截图忠实还原仍以原稿为准。
@@ -84,7 +94,7 @@
 
 ### 技能安装
 
-将本项目 `01-skills/ppt-beautify-studio` 文件夹复制到：
+将本项目 `01-skills/ppt-beautify-studio` 文件夹（包含subskills/ui-ux-design）整体复制到：
 
 ```text
 $CODEX_HOME/skills/ppt-beautify-studio
@@ -92,6 +102,8 @@ $CODEX_HOME/skills/ppt-beautify-studio
 
 未设置 `CODEX_HOME` 时通常是用户目录的 `.codex/skills/ppt-beautify-studio`。
 已有安装应先备份自己的修改；不覆盖个人服务配置或项目素材。此项目未包含任何服务密钥。
+主技能直接读取内置子技能，嵌套技能是否出现在宿主选择列表需刷新发现后确认。独立UI任务可按该路径加载`ui-ux-design/SKILL.md`；本机不要再复制一份同名子技能到skills根目录。
+从旧distinctive-ai-design迁移时，先把旧安装完整备份到发现目录之外，再退出旧名称的发现入口；只更新PPT安装不会自行清除其他环境中的旧技能。
 
 ### Python 与真实渲染
 
@@ -258,6 +270,7 @@ VERSION
   config/defaults.json
   references/             按模式与能力逐步加载
   scripts/                本地提取、组合、渲染、设置、预检等工具
+  subskills/ui-ux-design/  内置共享设计、动画、着色器与3D方法库
 04-tests/test_studio.py       离线回归，不触发服务调用或修改真实偏好
 03-examples/                 不含密钥/真实素材的协议样例
 02-docs/                     发布说明与版本审查

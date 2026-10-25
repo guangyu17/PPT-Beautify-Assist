@@ -45,6 +45,34 @@ def main():
             errors.append("SKILL metadata.version differs from VERSION")
     except (IndexError, KeyError, TypeError, yaml.YAMLError) as exc:
         errors.append(f"Invalid skill version metadata: {exc}")
+    skill_names = set()
+    skill_count = 0
+    for path in sorted(p for p in files if p.name == 'SKILL.md'):
+        skill_count += 1
+        relative = path.relative_to(ROOT)
+        try:
+            text = path.read_text(encoding='utf-8-sig')
+            match = re.match(r'\A---\r?\n(.*?)\r?\n---(?:\r?\n|\Z)(.*)\Z', text, re.S)
+            if not match:
+                raise ValueError('Missing delimited YAML frontmatter')
+            metadata = yaml.safe_load(match[1])
+            if not isinstance(metadata, dict):
+                raise ValueError('Frontmatter must be a mapping')
+            name = metadata.get('name')
+            if not isinstance(name, str) or not re.fullmatch(r'[a-z0-9]+(?:-[a-z0-9]+)*', name) or len(name) > 64:
+                raise ValueError('Invalid skill name')
+            if name != path.parent.name:
+                raise ValueError('Skill name must match its directory')
+            if name in skill_names:
+                raise ValueError(f'Duplicate skill name: {name}')
+            skill_names.add(name)
+            description = metadata.get('description')
+            if not isinstance(description, str) or not description.strip() or len(description) > 1024:
+                raise ValueError('Missing or invalid description')
+            if not match[2].strip():
+                raise ValueError('Empty skill instructions')
+        except (OSError, UnicodeError, ValueError, yaml.YAMLError) as exc:
+            errors.append(f'{relative}: {exc}')
     readme = (ROOT / "README.md").read_text(encoding="utf-8-sig")
     changelog = (ROOT / "CHANGELOG.md").read_text(encoding="utf-8-sig")
     if f"**当前版本：{version}**" not in readme:
@@ -83,7 +111,7 @@ def main():
 
     for error in errors:
         print(f"ERROR: {error}")
-    print(f"Version {version}; {len(files)} source files; {len(directories)} README directories; {links} local links")
+    print(f"Version {version}; {len(files)} source files; {len(directories)} README directories; {links} local links; {skill_count} skills")
     print("PASS" if not errors else f"FAIL: {len(errors)} issue(s)")
     return int(bool(errors))
 
